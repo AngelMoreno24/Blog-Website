@@ -1,2 +1,2 @@
 # Blog-Website
-MERN stack blog site
+blog site using node, react, mysql, express
