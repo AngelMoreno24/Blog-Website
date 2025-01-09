@@ -8,7 +8,17 @@ export const verifyToken = async (req, res, next ) => {
     const authHeader = Authorization.split(" ");
     if(authHeader[0] == "Bearer"){
 
-        jwt.sign(authHeader[1], process.env.SECRET_TOKEN)
+        jwt.verify(authHeader[1], process.env.SECRET_TOKEN, (err, decoded)=>{
+
+            if(err){
+                res.status(401);
+                throw new Error("User is not authorized");
+            }
+
+            request.account = decoded.account
+
+            next();
+        })
         
 
     }
