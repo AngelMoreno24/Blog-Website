@@ -1,9 +1,13 @@
-const mysql = require("mysql");
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+import mysql from "mysql";
+import express from 'express';
+import cors from 'cors';
+import Sequelize from'sequelize';
+import dotenv from "dotenv";
+import accountRoute from "./routes/accountRoute.js";
 
-const Sequelize = require('sequelize'); // Import Sequelize
+dotenv.config();
+
+
 
 
 const app = express();
@@ -12,6 +16,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//refactor paths
+app.use('/accounts', accountRoute);
+
+
+const port = process.env.PORT || 5000;
 // Routes
 app.get('/', (req, res) => {
   res.send('API is running...');

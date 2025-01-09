@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Import the Sequelize connection
+import { DataTypes } from 'sequelize';
+import sequelize from '../db.js'; // Import
 
-  const Account = sequelize.define('Account', {
+const Account = sequelize.define('Account', {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,7 +33,8 @@ const sequelize = require('../db'); // Import the Sequelize connection
       },
     },
   }, {
-    timestamps: true, 
-  });
+    timestamps: false, 
+  }
+);
 
-module.exports = Account;
+export default Account;
