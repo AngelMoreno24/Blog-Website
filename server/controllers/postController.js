@@ -51,3 +51,33 @@ export const getAllPost =  async (req, res) => {
     }
 
 }
+
+
+// Route to Add a new account
+export const getOnePost =  async (req, res) => {
+
+  const { id } = req.body;
+  
+  try {
+      // Create the bloog post
+      const blogPosts = await BlogPosts.findAll({
+        where: {id:id}
+      });
+
+      // Adjust timestamps by -7 hours (UTC to UTC-7 for Phoenix time)
+      const adjustedBlogPosts = blogPosts.map(post => {
+        return {
+          ...post.toJSON(), // Convert Sequelize instance to plain JSON object
+          createdAt: adjustTime(post.createdAt, -7),
+          updatedAt: adjustTime(post.updatedAt, -7),
+        };
+      });
+
+      res.status(200).json({ message: 'Blog posts fetched successfully', blogPosts: adjustedBlogPosts });
+
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+
+}
+
