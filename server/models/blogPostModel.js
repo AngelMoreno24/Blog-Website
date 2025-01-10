@@ -25,7 +25,7 @@ const BlogPosts = sequelize.define('BlogPosts',
       allowNull: true, // Can be null if no image is provided
     },
   }, {
-    timestamps: false, 
+    timestamps: true, 
   }
 );
 
