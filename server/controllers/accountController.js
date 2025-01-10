@@ -1,5 +1,5 @@
 import express from 'express';
-import  Account  from '../models/accountModel.js';
+import Account  from '../models/accountModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 

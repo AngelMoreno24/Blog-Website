@@ -13,6 +13,8 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST, // Database host (e.g., 'localhost' or an IP)
     dialect: 'mysql', // Database type
     logging: false, // Disable logging (optional)
+    timezone: '-07:00', // Fixed offset for Phoenix (UTC-7) year-round
+    
   }
 );
 

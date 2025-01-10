@@ -4,6 +4,7 @@ import cors from 'cors';
 import Sequelize from'sequelize';
 import dotenv from "dotenv";
 import accountRoute from "./routes/accountRoute.js";
+import blogPostRoute from "./routes/blogPostRoute.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 
 //refactor paths
 app.use('/accounts', accountRoute);
+app.use('/blogPosts', blogPostRoute);
 
 
 const port = process.env.PORT || 5000;
@@ -31,6 +33,8 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     host: process.env.DB_HOST,
     dialect: 'mysql',
     logging: false, // Disable SQL logging in the console
+    timezone: '-07:00', // Fixed offset for Phoenix (UTC-7) year-round
+    
   });
 
   const PORT = process.env.PORT || 5000;
