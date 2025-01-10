@@ -1,9 +1,9 @@
 import express from 'express';
 import { createPost } from "../controllers/postController.js";
-//import { verifyToken} from "../middleware/validateToken.js"
+import { verifyToken } from "../middleware/tokenVerification.js"
 const router = express.Router();
 
-router.post("/create", createPost);
+router.post("/create", verifyToken, createPost);
 
 
 

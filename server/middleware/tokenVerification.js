@@ -2,25 +2,35 @@ import jwt from "jsonwebtoken";
 
 export const verifyToken = async (req, res, next ) => {
 
-    const {Authorization} = req.header;
+
+    try{
+            
+        let token;
+        let authHeader = req.headers.Authorization || req.headers.authorization;
 
 
-    const authHeader = Authorization.split(" ");
-    if(authHeader[0] == "Bearer"){
+        if(authHeader && authHeader.startsWith("Bearer")){
 
-        jwt.verify(authHeader[1], process.env.SECRET_TOKEN, (err, decoded)=>{
+            token = authHeader.split(" ")[1];
+            jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded)=>{
 
-            if(err){
+                if(err){
+                    res.status(401);
+                    throw new Error("User is not authorized");
+                }
+
+                req.account = decoded.account
+
+                next();
+            });
+
+            if(!token){
                 res.status(401);
-                throw new Error("User is not authorized");
+                throw new Error("User is not authorized or token is missing");
             }
-
-            request.account = decoded.account
-
-            next();
-        })
-        
-
+        }
+    }catch(error){
+        console.log('error in validation');
     }
 
 
