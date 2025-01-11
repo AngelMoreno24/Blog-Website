@@ -21,7 +21,6 @@ export const createAccount =  async (req, res) => {
 
 }
 
-// Route to Add a new account
 export const loginAccount =  async (req, res) => {
 
   const { email, password} = req.body;
@@ -63,7 +62,6 @@ export const loginAccount =  async (req, res) => {
       )
       
       return res.status(200).json({ accessToken });
-      res.status(200).json({ message: 'Login successful', account })
       
     } catch (error) {
       res.status(500).json({ error: error.message });

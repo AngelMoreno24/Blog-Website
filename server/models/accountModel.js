@@ -33,7 +33,7 @@ const Account = sequelize.define('Account', {
       },
     },
   }, {
-    timestamps: true, 
+    timestamps: false, 
   }
 );
 
