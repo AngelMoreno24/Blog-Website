@@ -5,6 +5,7 @@ import Sequelize from'sequelize';
 import dotenv from "dotenv";
 import accountRoute from "./routes/accountRoute.js";
 import blogPostRoute from "./routes/blogPostRoute.js";
+import commentRoute from "./routes/commentRoute.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(cors());
 //refactor paths
 app.use('/accounts', accountRoute);
 app.use('/blogPosts', blogPostRoute);
+app.use('/comments', commentRoute);
 
 
 const port = process.env.PORT || 5000;
