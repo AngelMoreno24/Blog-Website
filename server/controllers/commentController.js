@@ -18,6 +18,40 @@ export const createComment =  async (req, res) => {
 
 }
 
+export const editComment = async (req, res) => {
+
+  const { id, content } = req.body;
+
+  const userId = req.account.id;
+  try {
+    
+         
+    
+      const comment = await Comments.findOne(
+        { where: { id: id } } // Replace with the post ID
+      );
+
+      if(!comment){
+        res.status(400).json({message: "could not find comment"})
+      }
+      
+        
+      comment.content = content;
+        
+
+
+      await comment.save();
+
+
+
+      res.status(201).json({ message: 'Comment created successfully', comment });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+
+}
+ 
+
 
 // Function to adjust time by hours
 const adjustTime = (timeString, hours) => {
