@@ -51,6 +51,33 @@ export const editComment = async (req, res) => {
 
 }
  
+export const deleteComment = async (req, res) => {
+
+  const { id } = req.body;
+
+  const userId = req.account.id;
+  try {
+    
+         
+    
+      const comment = await Comments.findOne(
+        { where: { id: id } } // Replace with the post ID
+      );
+
+      if(!comment){
+        res.status(400).json({message: "could not find comment"})
+      }
+
+      await comment.destroy();
+
+      res.status(201).json({ message: 'Comment deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+}
+ 
+
+
 
 
 // Function to adjust time by hours
