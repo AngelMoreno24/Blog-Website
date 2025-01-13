@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import accountRoute from "./routes/accountRoute.js";
 import blogPostRoute from "./routes/blogPostRoute.js";
 import commentRoute from "./routes/commentRoute.js";
+import likeRoute from "./routes/likeRoute.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/accounts', accountRoute);
 app.use('/blogPosts', blogPostRoute);
 app.use('/comments', commentRoute);
+app.use('/likes', likeRoute);
 
 
 const port = process.env.PORT || 5000;
