@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/create", verifyToken, createLike);
 
-router.post("/getAllLikes", verifyToken, getPostLikes);
+router.post("/getPostLikes", verifyToken, getPostLikes);
 
 router.delete("/delete", verifyToken, deleteLike);
 
