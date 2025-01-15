@@ -7,12 +7,12 @@ const Categories = sequelize.define('Categories',
       type: DataTypes.STRING(100),
       allowNull: false, // Title is required
     },
-    content: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: false, // Content is required
     },
   }, {
-    timestamps: true, 
+    timestamps: false, 
   }
 );
 

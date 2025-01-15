@@ -7,6 +7,8 @@ import accountRoute from "./routes/accountRoute.js";
 import blogPostRoute from "./routes/blogPostRoute.js";
 import commentRoute from "./routes/commentRoute.js";
 import likeRoute from "./routes/likeRoute.js";
+import categoriesRoute from "./routes/categoriesRoute.js";
+
 
 dotenv.config();
 
@@ -24,6 +26,7 @@ app.use('/accounts', accountRoute);
 app.use('/blogPosts', blogPostRoute);
 app.use('/comments', commentRoute);
 app.use('/likes', likeRoute);
+app.use('/categories', categoriesRoute);
 
 
 const port = process.env.PORT || 5000;
