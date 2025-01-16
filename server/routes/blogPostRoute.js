@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPost, getAllPost, getOnePost, getUserPosts, editPost } from "../controllers/postController.js";
+import { createPost, getAllPost, getOnePost, getUserPosts, editPost, deletePost } from "../controllers/postController.js";
 
 import { createBlogPostCategories, deleteBlogPostCategories, getBlogPostCategories } from "../controllers/blogPostCategoriesController.js";
 
@@ -15,6 +15,8 @@ router.post("/getOne", verifyToken, getOnePost);
 router.post("/getUser", verifyToken, getUserPosts);
 
 router.post("/edit", verifyToken, editPost);
+
+router.delete("/delete", verifyToken, deletePost);
 
 
 export default router;

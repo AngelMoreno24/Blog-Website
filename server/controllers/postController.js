@@ -161,3 +161,34 @@ export const editPost =  async (req, res) => {
     }
 
 }
+
+// Route to Add a new account
+export const deletePost =  async (req, res) => {
+ 
+  
+  const { id } = req.body;
+    
+  const currentId = req.account.id;
+  
+  console.log("user attempting edit"+ currentId);
+
+  try {
+    
+      const post = await BlogPosts.findOne(
+        { where: { id: id } } // Replace with the post ID
+      );
+
+      if(!post){
+        return res.status(400).json({message: "could not find post"})
+      }
+      
+         
+      await post.destroy();
+
+      res.status(201).json({ message: 'Blog posts deleted successfully' });
+
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+
+}
