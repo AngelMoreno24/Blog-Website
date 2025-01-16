@@ -2,15 +2,20 @@ import express from 'express';
 import BlogPosts  from '../models/blogPostModel.js';
 
 // Route to Add a new account
-export const createPost =  async (req, res) => {
+export const createPost =  async (req, res, next) => {
 
-    const { title, content, imageUrl} = req.body;
+    const { title, content, imageUrl, category} = req.body;
     
     const userId = req.account.id;
     try {
         // Create the bloog post
         const blogPost = await BlogPosts.create({ userId, title, content, imageUrl});
-        res.status(201).json({ message: 'Blog post created successfully', blogPost });
+
+        req.blogPostId = blogPost.id;
+        req.category = category;
+
+        next();
+
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

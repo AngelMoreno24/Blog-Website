@@ -1,28 +1,28 @@
-import express from 'express';
-import Likes  from '../models/likeModel.js';
+import BlogPostCategories  from '../models/blogPostCategoriesModel.js';
+import Categories  from '../models/categoriesModel.js';
 
 // Route to Add a new account
 export const createBlogPostCategories =  async (req, res) => {
-
-    const { postId, categoryId } = req.body;
+ 
     
-    const userId = req.account.id;
+    const postId = req.blogPostId;
+    const name = req.category;
     try {
-      
-      const exists = await Likes.findOne(
-          { where: { userId: userId } } // Replace with the post ID
-      );
-        if(exists){
-          return res.status(409).json({ message: 'You have already liked this post' });
+        
+        const exists = await Categories.findOne(
+            { where: { name: name } } // Replace with the post ID
+        );
+        if(!exists){
+          return res.status(409).json({ message: 'Category does not exist' });
         }
 
 
-        await Likes.create({ postId, userId});
-        res.status(201).json({ message: 'Like added successfully' });
+        await BlogPostCategories.create({ postId, categoryId: exists.id});
+        res.status(201).json({ message: 'post added successfully' });
       } catch (error) {
         res.status(500).json({ error: error.message });
       }
-
+ 
 }
  
 export const deleteBlogPostCategories = async (req, res) => {

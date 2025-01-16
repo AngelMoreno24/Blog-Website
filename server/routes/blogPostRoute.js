@@ -1,9 +1,12 @@
 import express from 'express';
 import { createPost, getAllPost, getOnePost, getUserPosts, editPost } from "../controllers/postController.js";
+
+import { createBlogPostCategories, deleteBlogPostCategories, getBlogPostCategories } from "../controllers/blogPostCategoriesController.js";
+
 import { verifyToken } from "../middleware/tokenVerification.js"
 const router = express.Router();
 
-router.post("/create", verifyToken, createPost);
+router.post("/create", verifyToken, createPost, createBlogPostCategories);
 
 router.post("/getAll", verifyToken, getAllPost);
 

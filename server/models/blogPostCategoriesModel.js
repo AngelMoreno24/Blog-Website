@@ -1,33 +1,29 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db.js'; // Import
 
-const blogPostCategories = sequelize.define('blogPostCategories', 
+const BlogPostCategories = sequelize.define('BlogPostCategories', 
   {
     postId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'BlogPost', // This must match the table name for the Account model
+        model: 'BlogPost', 
         key: 'id',
       },
-      onDelete: 'CASCADE', // Automatically delete posts if the user is deleted
+      onDelete: 'CASCADE', 
     },
     categoryId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER,  
       allowNull: false,
       references: {
-        model: 'Accounts', // This must match the table name for the Account model
+        model: 'Categories', 
         key: 'id',
       },
-      onDelete: 'CASCADE', // Automatically delete posts if the user is deleted
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false, // Content is required
+      onDelete: 'CASCADE',
     },
   }, {
-    timestamps: true, 
+    timestamps: false, 
   }
 );
 
-export default blogPostCategories;
+export default BlogPostCategories;
